@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+##############################################
+# The MIT License (MIT)
+# Copyright (c) 2020 Kevin Walchko
+# see LICENSE for full details
+##############################################
 import apriltag_gen as apt
 import numpy as np
 from PIL import Image

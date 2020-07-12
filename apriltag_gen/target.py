@@ -1,4 +1,9 @@
-
+# -*- coding: utf-8 -*
+##############################################
+# The MIT License (MIT)
+# Copyright (c) 2020 Kevin Walchko
+# see LICENSE for full details
+##############################################
 
 
 def board(self, marker_size, family, scale=10, ofw=2):
