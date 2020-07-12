@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "apriltag_gen"
+version = "0.0.1"
+description = "Generate apriltags"
+authors = ["walchko <walchko@users.noreply.github.com>"]
+readme = "readme.md"
+license = "MIT"
+homepage = "https://pypi.org/project/apriltag_gen/"
+repository = 'https://github.com/MomsFriendlyRobotCompany/apriltag_gen'
+# documentation = "http://..."
+keywords = ["apriltag"]
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Topic :: Software Development :: Libraries',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Topic :: Software Development :: Libraries :: Application Frameworks'
+]
+
+[tool.poetry.scripts]
+apriltag_generator = 'apriltag_gen.bin.gen:main'
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+numpy = "*"
+pillow = "*"
+# pupil-apriltags = "*"
+importlib-metadata = {version="*", python="<3.8"}
+# colorama = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
