@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 
 
-def draw_id(img, tags):
+def draw_ids(img, tags):
     """
     Draws the tag IDs on the found tags
 
