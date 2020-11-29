@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "apriltag_gen"
-version = "0.0.1"
+version = "0.1.0"
 description = "Generate apriltags"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
@@ -8,7 +8,7 @@ license = "MIT"
 homepage = "https://pypi.org/project/apriltag_gen/"
 repository = 'https://github.com/MomsFriendlyRobotCompany/apriltag_gen'
 # documentation = "http://..."
-keywords = ["apriltag"]
+keywords = ["apriltag", "camera", "calibration"]
 classifiers = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
@@ -28,10 +28,11 @@ apriltag_generator = 'apriltag_gen.bin.gen:main'
 [tool.poetry.dependencies]
 python = ">=3.6"
 numpy = "*"
+imageio = "*"
 pillow = "*"
-# pupil-apriltags = "*"
+# pupil-apriltags = "*" # actually don't need this
 importlib-metadata = {version="*", python="<3.8"}
-# colorama = "*"
+colorama = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

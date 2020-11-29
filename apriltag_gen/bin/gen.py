@@ -6,32 +6,23 @@
 ##############################################
 import apriltag_gen as apt
 import numpy as np
-from PIL import Image
+import argparse
+import imageio
+
+
 
 def main():
-    family = "tag36h11"
-    a = 12
-    b = 22
-    tags = apt.generate(family, range(a,b))
-    print(tags[0])
-    # print(apt.flip(tags[0].array))
-    apt.save("png", tags, 30)
+    parser = argparse.ArgumentParser(description="Generate an AprilTag calibration board")
+    parser.add_argument("-f", "--family", type=str, help="tag family, either tag16h5, tag25h9, tag36h10, or tag36h11; default is tag36h11", default="tag36h11")
+    parser.add_argument("-n", "--filename", type=str, help="set output file name", default="board.png")
+    parser.add_argument("-s", "--size", nargs=2, type=int, help="board size: 9 6", default=[4,5])
+    parser.add_argument('-v', '--version', action='version', version=apt.__version__)
+    args = parser.parse_args()
+    args = vars(args)
 
-    t = tags[0].array
-    tt = np.array(t^1, dtype=np.uint8)
-    # print(t)
-    # print(tt)
-    # tt = apt.Tag(t.family + "-w",t.id,t.array^1)
-    # apt.save("png", [tt],300)
-    a = np.hstack((t,tt,t,tt))
-    aa = np.hstack((tt,t,tt,t))
-    a = np.vstack((a,aa,a,aa))
-    img = Image.fromarray(a * 255)
-    h,w = a.shape
-    s = w*30
-    img = img.resize((s, s), resample=Image.NEAREST)
-    # img = img.resize((pixels, pixels), resample=Image.NEAREST)
-    img.save("bob.png")
+
+    xx = apt.target.board(args["size"], args["family"])
+    imageio.imwrite(args["filename"], xx)
 
 
 
