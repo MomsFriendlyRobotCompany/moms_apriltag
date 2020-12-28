@@ -1,4 +1,4 @@
-![](example/apriltag_target.png)
+![](https://github.com/MomsFriendlyRobotCompany/moms_apriltag/blob/master/example/apriltag_target.png?raw=true)
 
 # Apriltag Camera Calibration Board Generator
 ![CheckPackage](https://github.com/MomsFriendlyRobotCompany/moms_apriltag/workflows/CheckPackage/badge.svg)
