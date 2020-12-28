@@ -6,3 +6,7 @@
 build
 *.egg-info
 dev
+dist
+old
+__pycache__
+apriltag_gen

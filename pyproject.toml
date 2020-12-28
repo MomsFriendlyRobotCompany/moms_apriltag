@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "apriltag_gen"
-version = "0.1.0"
+name = "moms_apriltag"
+version = "0.2.0"
 description = "Generate apriltags"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
@@ -12,27 +12,34 @@ keywords = ["apriltag", "camera", "calibration"]
 classifiers = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
+    "Framework :: Robot Framework :: Library",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
     'License :: OSI Approved :: MIT License',
     'Operating System :: OS Independent',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
     'Topic :: Software Development :: Libraries',
     'Topic :: Software Development :: Libraries :: Python Modules',
-    'Topic :: Software Development :: Libraries :: Application Frameworks'
+    'Topic :: Software Development :: Libraries :: Application Frameworks',
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Image Processing"
 ]
 
-[tool.poetry.scripts]
-apriltag_generator = 'apriltag_gen.bin.gen:main'
+# [tool.poetry.scripts]
+# apriltag_generator = 'moms_apriltag.bin.gen:main'
 
 [tool.poetry.dependencies]
 python = ">=3.6"
 numpy = "*"
-imageio = "*"
-pillow = "*"
+# imageio = "*"
+# pillow = "*"
 # pupil-apriltags = "*" # actually don't need this
 importlib-metadata = {version="*", python="<3.8"}
-colorama = "*"
+# colorama = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

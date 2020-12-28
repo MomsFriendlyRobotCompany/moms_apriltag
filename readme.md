@@ -1,25 +1,37 @@
-# Apriltag Generator
+![](example/apriltag_target.png)
+
+# Apriltag Camera Calibration Board Generator
 
 Why? There didn't really seem to be an easy way to do this IMHO.
 
 ## Install
 
 ```
-pip install apriltag_gen
+pip install moms_apriltag
 ```
 
-## Example
+## Usage
+
+This package create a simple numpy image that can then be saved
+to a PNG or JPEG image and printed.
+
+Supported families: `tag16h5`, `tag25h9`, `tag36h10`, `tag36h11`
 
 ```
 #!/usr/bin/env python3
-import apriltag_gen as apt
+import moms_apriltag as apt
+import numpy as np
+import imageio
+
 
 if __name__ == '__main__':
-    family = "tag36h11"
-    a = 12
-    b = 22
-    tags = apt.generate(family, range(a,b))
-    apt.save("png", tags, 30)
+    family = "tag36h10"
+    shape = (6,8)
+    filename = "apriltag_target.png"
+    size = 50
+
+    tgt = apt.board(shape, family, size)
+    imageio.imwrite(filename, tgt)
 ```
 
 # MIT License
