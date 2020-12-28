@@ -1,6 +1,12 @@
 ![](example/apriltag_target.png)
 
 # Apriltag Camera Calibration Board Generator
+![CheckPackage](https://github.com/MomsFriendlyRobotCompany/moms_apriltag/workflows/CheckPackage/badge.svg)
+![GitHub](https://img.shields.io/github/license/MomsFriendlyRobotCompany/moms_apriltag)
+[![Latest Version](https://img.shields.io/pypi/v/moms_apriltag.svg)](https://pypi.python.org/pypi/moms_apriltag/)
+[![image](https://img.shields.io/pypi/pyversions/moms_apriltag.svg)](https://pypi.python.org/pypi/moms_apriltag)
+[![image](https://img.shields.io/pypi/format/moms_apriltag.svg)](https://pypi.python.org/pypi/moms_apriltag)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/moms_apriltag?color=aqua)
 
 Why? There didn't really seem to be an easy way to do this IMHO.
 
