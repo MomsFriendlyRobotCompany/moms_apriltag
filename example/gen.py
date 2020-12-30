@@ -11,9 +11,9 @@ import imageio
 
 if __name__ == '__main__':
     # family = "tag36h11"
-    family = "tag36h10"
+    family = "tag36h11"
     # family = "tag25h9"
-    shape = (6,8)
+    shape = (6,9)
     filename = "apriltag_target.png"
     size = 50
 
