@@ -10,3 +10,5 @@ dist
 old
 __pycache__
 apriltag_gen
+
+.ipynb_checkpoints

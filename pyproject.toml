@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "moms_apriltag"
-version = "0.2.1"
+version = "0.2.2"
 description = "Generate apriltags"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
@@ -18,10 +18,11 @@ classifiers = [
     "Natural Language :: English",
     'License :: OSI Approved :: MIT License',
     'Operating System :: OS Independent',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
+    # 'Programming Language :: Python :: 3.6',
+    # 'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
     'Topic :: Software Development :: Libraries',
     'Topic :: Software Development :: Libraries :: Python Modules',
     'Topic :: Software Development :: Libraries :: Application Frameworks',
@@ -33,12 +34,12 @@ classifiers = [
 # apriltag_generator = 'moms_apriltag.bin.gen:main'
 
 [tool.poetry.dependencies]
-python = ">=3.6"
+python = ">=3.8"
 numpy = "*"
 # imageio = "*"
 # pillow = "*"
 # pupil-apriltags = "*" # actually don't need this
-importlib-metadata = {version="*", python="<3.8"}
+# importlib-metadata = {version="*", python="<3.8"}
 # colorama = "*"
 
 [tool.poetry.dev-dependencies]

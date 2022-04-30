@@ -12,11 +12,17 @@ import numpy as np
 # import numpy as np
 # from PIL import Image
 from collections import namedtuple
+# from sys import exit
 
 from .tags import tag16h5
 from .tags import tag25h9
 from .tags import tag36h10
 from .tags import tag36h11
+
+# so I have to do padding and change my code below to
+# make these tag formats work.
+# from .tags import tag41h12
+# from .tags import tagCircle21h7
 
 flip = lambda a: a^1
 
@@ -26,7 +32,9 @@ apriltags = {
     "tag16h5": tag16h5,
     "tag25h9": tag25h9,
     "tag36h10": tag36h10,
-    "tag36h11": tag36h11
+    "tag36h11": tag36h11,
+    # "tag41h12": tag41h12,
+    # "tagCircle21h7": tagCircle21h7
 }
 
 # Generate a tag with the given value, return a numpy array
@@ -49,8 +57,8 @@ def generate(family, nums):
     try:
         tagdata = apriltags[family]
     except:
-        print(f"*** Invalid family: {family} ***")
-        exit(1)
+        raise Exception(f"*** Invalid family: {family} ***")
+        # exit(1)
 
     tags = [Tag(family, n, gen_tag(tagdata, n)) for n in nums]
     return tags
