@@ -41,7 +41,6 @@ jobs:
                 echo "Installing dependencies"
                 pip install -U pip setuptools wheel poetry
                 poetry install
-                pip show moms_apriltag
                 pytest tests/
               # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
             # - name: Show Module Info
