@@ -41,14 +41,16 @@ jobs:
                 echo "Installing dependencies"
                 pip install -U pip setuptools wheel poetry
                 poetry install
-              # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-            - name: Show Module Info
-              run: |
                 pip show moms_apriltag
+                pytest tests/
+              # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+            # - name: Show Module Info
+            #   run: |
+            #     pip show moms_apriltag
             # - name: Run PyTest
             #   run: |
             #     source .venv/bin/activate
             #     pytest tests/
-            - name: Run PyTest
-              run: |
-                pytest tests/
+            # - name: Run PyTest
+            #   run: |
+            #     pytest tests/
