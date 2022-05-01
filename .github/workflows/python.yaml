@@ -44,9 +44,11 @@ jobs:
               # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
             - name: Show Module Info
               run: |
-                source .venv/bin/activate
                 pip show moms_apriltag
+            # - name: Run PyTest
+            #   run: |
+            #     source .venv/bin/activate
+            #     pytest tests/
             - name: Run PyTest
               run: |
-                source .venv/bin/activate
                 pytest tests/
