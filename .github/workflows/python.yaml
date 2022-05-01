@@ -39,7 +39,7 @@ jobs:
             - name: Install packages
               run: |
                 echo "Installing dependencies"
-                pip install -U pip setuptools wheel poetry
+                pip install -U pip setuptools wheel poetry pytest
                 poetry install
                 pytest tests/
               # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
