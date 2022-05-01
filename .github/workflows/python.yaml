@@ -36,13 +36,13 @@ jobs:
             #     source .venv/bin/activate
             #     pip install -U pip setuptools wheel poetry
             #   if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-              - name: Install packages
-                run: |
-                  echo "Installing dependencies"
-                  pip install -U pip setuptools wheel poetry
-                  source .venv/bin/activate
-                  poetry install
-                # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+            - name: Install packages
+              run: |
+                echo "Installing dependencies"
+                pip install -U pip setuptools wheel poetry
+                source .venv/bin/activate
+                poetry install
+              # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
             - name: Show Module Info
               run: |
                 source .venv/bin/activate
