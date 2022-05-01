@@ -39,12 +39,15 @@ jobs:
             - name: Install packages
               run: |
                 echo "Installing dependencies"
+                python3 -m venv ~/.venv
+                source .venv/bin/activate
                 pip install -U pip setuptools wheel poetry pytest
                 poetry install
                 pytest tests/
               # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
             # - name: Show Module Info
             #   run: |
+            #     source .venv/bin/activate
             #     pip show moms_apriltag
             # - name: Run PyTest
             #   run: |
