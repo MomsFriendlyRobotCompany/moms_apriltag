@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "moms_apriltag"
 version = "0.2.3"
-description = "Generate apriltags"
+description = "Generate apriltags and calibration targets"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
 license = "MIT"
