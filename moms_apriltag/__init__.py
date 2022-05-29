@@ -1,7 +1,4 @@
-# try:
 from importlib.metadata import version # type: ignore
-# except ImportError:
-#     from importlib_metadata import version # type: ignore
 
 from .target import generate
 from .target import board
