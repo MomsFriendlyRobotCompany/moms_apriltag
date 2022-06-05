@@ -37,8 +37,10 @@ apriltags = {
     # "tagCircle21h7": tagCircle21h7
 }
 
-# Generate a tag with the given value, return a numpy array
 def gen_tag(tag, val):
+    """
+    Generate a tag with the given value, return a numpy array
+    """
     d = np.frombuffer(np.array(tag.codes[val], ">i8"), np.uint8)
     bits = np.unpackbits(d)[-tag.area:].reshape((-1,tag.dim))
     bits = np.pad(bits, 1, 'constant', constant_values=0)
@@ -73,13 +75,14 @@ def board(marker_size, family, scale=10, ofw=2, span=None):
     marker_size: dimensions of board, tuple(rows, cols)
     family: family of the tag, string
     scale: scale image by a factor, default: 10
-    ofw: offset between tags, this is affected by scale size, default: 2 (2*scale is what is really is)
+    ofw: offset between tags, this is affected by scale size,
+         default: 2 (2*scale is what is really is)
     span: tag numbers to use, default: None
     """
     if span:
         r = span
         if len(span) != marker_size[0]*marker_size[1]:
-            raise Exception("Span doesn't fit inside marker_size; len(span) != marker_size[0]*marker_size[1]")
+            raise Exception("len(span) != marker_size[0]*marker_size[1]")
     else:
         r = marker_size[0]*marker_size[1]
 

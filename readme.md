@@ -26,7 +26,6 @@ Supported families: `tag16h5`, `tag25h9`, `tag36h10`, `tag36h11`
 ```
 #!/usr/bin/env python3
 import moms_apriltag as apt
-import numpy as np
 import imageio
 
 
