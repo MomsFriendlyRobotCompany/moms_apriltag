@@ -6,46 +6,37 @@
 ##############################################
 
 import numpy as np
-# from .tag_generate import generate
-# import sys
-# import math
-# import numpy as np
-# from PIL import Image
 from collections import namedtuple
-# from sys import exit
-
-from .tags import tag16h5
-from .tags import tag25h9
-from .tags import tag36h10
-from .tags import tag36h11
-
-# so I have to do padding and change my code below to
-# make these tag formats work.
-# from .tags import tag41h12
-# from .tags import tagCircle21h7
 
 flip = lambda a: a^1
 
 Tag = namedtuple("Tag", "family id array")
 
-apriltags = {
-    "tag16h5": tag16h5,
-    "tag25h9": tag25h9,
-    "tag36h10": tag36h10,
-    "tag36h11": tag36h11,
-    # "tag41h12": tag41h12,
-    # "tagCircle21h7": tagCircle21h7
-}
+apriltags_v2 = [
+    "tag16h5",
+    "tag25h9",
+    "tag36h10",
+    "tag36h11",
+]
 
-def gen_tag(tag, val):
-    """
-    Generate a tag with the given value, return a numpy array
-    """
-    d = np.frombuffer(np.array(tag.codes[val], ">i8"), np.uint8)
-    bits = np.unpackbits(d)[-tag.area:].reshape((-1,tag.dim))
-    bits = np.pad(bits, 1, 'constant', constant_values=0)
-    # bits = np.pad(bits, 2, 'constant', constant_values=1)
-    return bits
+apriltags_v3 = [
+    "tagCircle21h7",
+    "tagCircle49h12",
+    "tagCustom48h12",
+    "tagStandard41h12",
+    "tagStandard52h13",
+]
+
+
+# def gen_tag(tag, val):
+#     """
+#     Generate a tag with the given value, return a numpy array
+#     """
+#     d = np.frombuffer(np.array(tag.codes[val], ">i8"), np.uint8)
+#     bits = np.unpackbits(d)[-tag.area:].reshape((-1,tag.dim))
+#     bits = np.pad(bits, 1, 'constant', constant_values=0)
+#     # bits = np.pad(bits, 2, 'constant', constant_values=1)
+#     return bits
 
 
 def generate(family, nums):
@@ -56,19 +47,26 @@ def generate(family, nums):
     family: tag16h5, tag25h9, tag36h10, tag36h11
     nums: an array of id, ex [1,2,3, ... 45,46,47]
     """
-    try:
-        tagdata = apriltags[family]
-    except:
-        raise Exception(f"*** Invalid family: {family} ***")
-        # exit(1)
+    if isinstance(nums, range):
+        nums = list(nums)
+    if not isinstance(nums, list):
+        nums = [nums]
 
-    tags = [Tag(family, n, gen_tag(tagdata, n)) for n in nums]
+    if family in apriltags_v2:
+        from .generator2 import TagGenerator2 as TagGenerator
+    elif family in apriltags_v3:
+        from .generator3 import TagGenerator3 as TagGenerator
+    else:
+        raise Exception(f"*** Invalid family: {family} ***")
+
+    tg = TagGenerator(family)
+    tags = [Tag(family, n, tg.generate(n)) for n in nums]
     return tags
 
 
-def check_size(r, size):
-    if r >= size:
-        raise Exception(f"family board size exceeded: {r} != {size}")
+# def check_size(r, size):
+#     if r >= size:
+#         raise Exception(f"family board size exceeded: {r} != {size}")
 
 def board(marker_size, family, scale=10, ofw=2, span=None):
     """
@@ -87,16 +85,16 @@ def board(marker_size, family, scale=10, ofw=2, span=None):
         r = marker_size[0]*marker_size[1]
 
     if family == "tag36h10":
-        check_size(r, len(tag36h10.codes))
+        # check_size(r, len(tag36h10.codes))
         tag_size = 8
     elif family == "tag36h11":
-        check_size(r, len(tag36h11.codes))
+        # check_size(r, len(tag36h11.codes))
         tag_size = 8
     elif family == "tag25h9":
-        check_size(r, len(tag25h9.codes))
+        # check_size(r, len(tag25h9.codes))
         tag_size = 7
     elif family == "tag16h5":
-        check_size(r, len(tag16h5.codes))
+        # check_size(r, len(tag16h5.codes))
         tag_size = 6
     else:
         raise Exception(f"Invalid tag family: {family}")

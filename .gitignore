@@ -8,6 +8,7 @@ build
 dev
 dist
 old
+delete
 __pycache__
 apriltag_gen
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "moms_apriltag"
-version = "2022.12.23"
+version = "2022.12.25"
 description = "Generate apriltags and calibration targets"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
@@ -8,7 +8,7 @@ license = "MIT"
 homepage = "https://pypi.org/project/apriltag_gen/"
 repository = 'https://github.com/MomsFriendlyRobotCompany/apriltag_gen'
 # documentation = "http://..."
-keywords = ["apriltag", "camera", "calibration"]
+keywords = ["apriltag", "apriltagv2", "apriltagv3", "camera", "calibration"]
 classifiers = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
