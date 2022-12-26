@@ -18,6 +18,8 @@ pip install moms_apriltag
 
 ## Usage
 
+See the jupyter notebook in `example/examples.ipynb` for how to use this.
+
 This package create a simple numpy image that can then be saved
 to a PNG or JPEG image and printed. For circular or custom tags,
 there is a `toRGBA()` function to save the tag to a `png` using
