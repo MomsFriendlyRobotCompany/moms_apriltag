@@ -9,7 +9,7 @@ from importlib.metadata import version # type: ignore
 from .target import generate
 from .target import board
 from .generator2 import TagGenerator2
-from .generator3 import TagGenerator3
+from .generator3 import TagGenerator3, tag2RGBA
 from .target import apriltags_v2, apriltags_v3
 
 __license__ = "MIT"

@@ -12,6 +12,22 @@ BLACK     = 2
 DATA      = 3
 RECURSIVE = 4
 
+def tag2RGBA(im, clear=127):
+        """
+        Circular tags have a translucent value which is
+        carried as 127. However, when saving to a file,
+        which has to png, we need to add an alpha layer
+        and then you can save it using cv2.imwrite() or
+        something.
+
+        clear: transparent value, default: 127
+
+        return: 4 channel numpy array
+        """
+        a = np.where(im == clear, 0, 255)
+        png = np.dstack((im, im, im, a))
+        return png
+
 class ImageLayout:
     """
     ImageLayout holds the template for the tag
@@ -113,6 +129,11 @@ class TagGenerator3:
         return tag
 
     def setPixel(self, pix, code):
+        """
+        pix: template type (DATA, BLACK, WHITE, NOTHING)
+        code: tag code
+        return: pixel value 0-black, 127-transparent, 255-white
+        """
         numBits = self.template.numBits
 
         if pix == DATA:
@@ -128,6 +149,10 @@ class TagGenerator3:
         return value, code
 
     def renderToImage(self, p, code):
+        """
+        p: numpy array, pixel template for the tag family
+        code: hex number code
+        """
         size = self.template.size
 
         for i in range(4):

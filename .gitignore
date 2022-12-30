@@ -5,7 +5,6 @@
 *.pyc
 build
 *.egg-info
-dev
 dist
 old
 delete
