@@ -79,6 +79,12 @@ tag = tg.generate(137)
 plt.imshow(tag, cmap="gray)
 ```
 
+## Decoders
+
+- pupil labs (tested): https://github.com/pupil-labs/apriltags can decode gen 2 and 3 tags
+- `cv2.aruco` (tested): can decode gen 2 tags only
+- WillB97: https://github.com/WillB97/pyapriltags can decode gen 2 and 3 tags
+
 # Todo
 
 - [ ] refactor board code
