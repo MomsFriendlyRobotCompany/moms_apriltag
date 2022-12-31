@@ -46,4 +46,4 @@ class TagGenerator2:
         if scale:
             tag = np.repeat(np.repeat(tag, scale, axis=0), scale, axis=1)
 
-        return tag
+        return 255*tag
