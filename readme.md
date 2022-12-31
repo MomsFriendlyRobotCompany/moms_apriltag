@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
 ```python
 # for AprilTag v2
-from moms_apriltags import TagGenerator2
+from moms_apriltag import TagGenerator2
 from matplotlib import pyplot as plt
 
 tg = TagGenerator2("tag16h5")
@@ -70,7 +70,7 @@ plt.imshow(tag, cmap="gray)
 
 ```python
 # for AprilTag v3
-from moms_apriltags import TagGenerator3
+from moms_apriltag import TagGenerator3
 from matplotlib import pyplot as plt
 
 tg = TagGenerator3("tagStandard41h12")
