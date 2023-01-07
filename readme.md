@@ -81,7 +81,7 @@ tag = tg.generate(137)
 
 plt.imshow(tag, cmap="gray)
 ```
-## Apriltags using `opencv-python-contrib` for Camera Calibration Target Detection
+## Apriltags using `opencv-contrib-python` for Camera Calibration Target Detection
 
 This library uses the builtin `cv2.aruco` module that can detect:
 

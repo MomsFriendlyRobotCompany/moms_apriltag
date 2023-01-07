@@ -35,7 +35,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = ">=3.8"
 numpy = "*"
-opencv-python-contrib = "*"
+opencv-contrib-python = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
