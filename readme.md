@@ -10,13 +10,16 @@
 
 Why? There didn't really seem to be an easy way to do this IMHO.
 
+This library is able to produce both generation 2 and 3 apriltags all via python (
+no C/C++ library compiling and linking).
+
 ## Install
 
 ```
 pip install moms_apriltag
 ```
 
-## Usage
+## Examples / Usage
 
 See the jupyter notebook in `example/examples.ipynb` for how to use this.
 
@@ -78,19 +81,31 @@ tag = tg.generate(137)
 
 plt.imshow(tag, cmap="gray)
 ```
+## Apriltags using `opencv-python-contrib` for Camera Calibration Target Detection
+
+This library uses the builtin `cv2.aruco` module that can detect:
+
+- `DICT_APRILTAG_16H5`
+- `DICT_APRILTAG_25h9`
+- `DICT_APRILTAG_36h10`
+- `DICT_APRILTAG_36h11`
+
+**This is still a work in progress**
 
 ## Decoders
 
+`cv2.aruco` for calibration is built in, but it can decode generation 2 tags only.
+
 - pupil labs (tested): https://github.com/pupil-labs/apriltags can decode gen 2 and 3 tags
     - The detection of gen 3 tags is very slow
-- `cv2.aruco` (tested): can decode gen 2 tags only
 - WillB97: https://github.com/WillB97/pyapriltags can decode gen 2 and 3 tags
+
 
 # Todo
 
 - [ ] insert stereo calibration code using pupil labs?
 - [ ] refactor board code
-- [ ] enable apriltag v3 markers in board
+- [ ] enable apriltag v3 markers in board, given such slow performance, maybe not do this
 
 # MIT License
 
