@@ -114,12 +114,12 @@ def board(marker_size, family, scale=10, ofw=2, span=None):
             c = j*(ofc)
             x = i*marker_size[1]+j
             tag = tags[x].array
-            b[r:r+tag_size,c:c+tag_size] = tag
+            b[r:r+tag_size,c:c+tag_size] = 255*tag
 
     # border
     r,c = b.shape
-    mm = np.ones((r+ofw, c+ofw), dtype=np.uint8)
-    mm[ofw:,ofw:] = b
+    mm = 255*np.ones((r+ofw, c+ofw), dtype=np.uint8)
+    mm[ofw:,ofw:] = 255*b
 
 
     for i in range(marker_size[0]+1):     # rows
@@ -129,9 +129,9 @@ def board(marker_size, family, scale=10, ofw=2, span=None):
             mm[r:r+ofw,c:c+ofw] = box
 
     # mm = 255*flip(mm)
-    mm = 255*mm
+    # mm = 255*mm
 
     # scale image
     xx = np.repeat(np.repeat(mm, scale, axis=0), scale, axis=1)
 
-    return xx
+    return xx.astype(np.uint8)
