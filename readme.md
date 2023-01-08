@@ -30,7 +30,9 @@ to a PNG or JPEG image and printed. For circular or custom tags,
 there is a `toRGBA()` function to save the tag to a `png` using
 any image library that can accept `numpy` array images.
 
-Supported families are shown in the table below:
+Supported families are shown in the table below in the image and table:
+
+![](pics/apriltag_formats.png)
 
 | Family    | Generation | Hamming | Size | Data Bits | Unique Tags |
 |-----------|------------|---------|------|-----------|-------------|
@@ -101,7 +103,6 @@ This library uses the builtin `cv2.aruco` module that can detect:
 - pupil labs (tested): https://github.com/pupil-labs/apriltags can decode generation 2 and 3 tags
     - The detection of generation 3 tags is **very slow** relative to generation 2
 - WillB97 (untested): https://github.com/WillB97/pyapriltags can decode generation 2 and 3 tags
-
 
 # Todo
 
