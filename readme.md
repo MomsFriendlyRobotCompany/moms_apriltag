@@ -106,6 +106,10 @@ This library uses the builtin `cv2.aruco` module that can detect:
 
 # Todo
 
+- [ ] change the way the board is created, do a fixed scale size and add a margin with
+      text saying the orientation, family, size, and maybe in the small squares next to
+      the tags, put the number of the tag (number is for the lower left apriltag). I think
+      this would help debugging and understanding what is going on
 - [ ] insert stereo calibration code using pupil labs?
 - [ ] refactor board code
 - [ ] enable apriltag v3 markers in board, given such slow performance, maybe not do this
