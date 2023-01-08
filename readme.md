@@ -111,6 +111,8 @@ This library uses the builtin `cv2.aruco` module that can detect:
       the tags, put the number of the tag (number is for the lower left apriltag). I think
       this would help debugging and understanding what is going on
 - [ ] insert stereo calibration code using pupil labs?
+- [x] move the `opencv_camera` calibration code with `apriltags` here, however, I broke the
+      and am having an issue getting it working again :frowning_face:
 - [ ] refactor board code
 - [ ] enable apriltag v3 markers in board, given such slow performance, maybe not do this
 
