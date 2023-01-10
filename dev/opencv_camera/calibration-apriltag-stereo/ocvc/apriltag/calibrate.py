@@ -5,22 +5,20 @@
 ##############################################
 # -*- coding: utf-8 -*
 import numpy as np
-np.set_printoptions(precision=3)
-np.set_printoptions(suppress=True)
+# np.set_printoptions(precision=3)
+# np.set_printoptions(suppress=True)
 import cv2
 import time # save date in results
-from ..color_space import bgr2gray, gray2bgr
-# from ..mono.calibrate import CameraCalibration
-
+from moms_apriltag import bgr2gray, gray2bgr
 from .apriltag_marker import Tag
-from collections import OrderedDict
+from collections import OrderedDict # need?
 
-def tagsorted(tags):
-    def func(x):
-            return x.id
+# def tagsorted(tags):
+#     def func(x):
+#             return x.id
 
-    # ensure ids are ordered from low to high
-    return sorted(tags, key=func)
+#     # ensure ids are ordered from low to high
+#     return sorted(tags, key=func)
 
 class MarkerCameraCalibration:
     '''
@@ -46,7 +44,8 @@ class MarkerCameraCalibration:
         # bad_images = [] # keep track of what images failed
         tagids = []
 
-        max_corners = board.marker_size[0]*board.marker_size[1]
+        # max_corners = board.marker_size[0]*board.marker_size[1]
+        max_corners = np.multiply(*board.boardSize)
 
         for cnt, gray in enumerate(images):
             if len(gray.shape) > 2:
@@ -119,14 +118,14 @@ class MarkerCameraCalibration:
             ipts = np.array(ipts)
             opts = np.array(opts)
             ipts = ipts.reshape((-1,4,2)) # 4 x 2d
-            opts = opts.reshape((-1,4,3))   # 4 x 3d
+            opts = opts.reshape((-1,4,3)) # 4 x 3d
 
             # print(id,ipts.shape, opts.shape)
 
             # img_tags = {i: (im,obj,) for i, im, obj in zip(id,ipts,opts)}
             # dict(zip(idL,tuple(zip(ipL, ob))))
             # img_tags = OrderedDict(zip(id, tuple(zip(ipts,opts))))
-            img_tags = OrderedDict()
+            img_tags = OrderedDict() # need ordered?
             # print(id)
             # print(id.ravel())
             for i,im, ob in zip(id,ipts,opts):
@@ -137,8 +136,8 @@ class MarkerCameraCalibration:
 
         data = {
             'date': time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime()),
-            'markerType': board.type,
-            'markerSize': board.marker_size,
+            'markerFamily': board.family,
+            'boardSize': board.boardSize,
             'K': K,
             'd': dist,
             'rms': rms,
@@ -150,10 +149,10 @@ class MarkerCameraCalibration:
         }
 
         # print(tags[0]))
-        for k,v in tags[0].items():
-            print("-------")
-            print(v[0])
-            print(v[1])
+        # for k,v in tags[0].items():
+        #     print("-------")
+        #     print(v[0])
+        #     print(v[1])
 
         return data
 
@@ -243,6 +242,20 @@ class ApriltagStereoCalibration:
                 # print(">> imgpoints_l", np.vstack(ipts_l).shape)
                 # print("imgpoints_l", np.vstack(ipts_l).reshape((-1,1,2)).shape)
 
+        # for o in objpoints:
+        #     print(o.shape)
+        #     # print(o)
+        #     # print("-------")
+
+        # print("objpoints",type(objpoints),len(objpoints),objpoints[0].shape)
+        # print("imgpoints_l",type(imgpoints_l),len(imgpoints_l),imgpoints_l[0].shape)
+        # print("imgpoints_r",type(imgpoints_r),len(imgpoints_r),imgpoints_r[0].shape)
+
+
+        # cv2.utils.dumpInputArrayOfArrays(objpoints)
+        # cv2.utils.dumpInputArrayOfArrays(imgpoints_l)
+        # cv2.utils.dumpInputArrayOfArrays(imgpoints_r)
+
         """
         CALIB_ZERO_DISPARITY: horizontal shift, cx1 == cx2
         """
@@ -270,27 +283,6 @@ class ApriltagStereoCalibration:
 
         h,w = imgs_l[0].shape[:2]
 
-        # cv2.utils.dumpInputArray(np.array(objpoints))
-        # cv2.utils.dumpInputArray(np.array(imgpoints_l))
-        # cv2.utils.dumpInputArray(np.array(imgpoints_r))
-
-        # for o in objpoints:
-        #     print(o.shape)
-        #     # print(o)
-        #     # print("-------")
-
-        print("objpoints",type(objpoints),len(objpoints),objpoints[0].shape)
-        print("imgpoints_l",type(imgpoints_l),len(imgpoints_l),imgpoints_l[0].shape)
-        print("imgpoints_r",type(imgpoints_r),len(imgpoints_r),imgpoints_r[0].shape)
-
-
-        cv2.utils.dumpInputArrayOfArrays(objpoints)
-        cv2.utils.dumpInputArrayOfArrays(imgpoints_l)
-        cv2.utils.dumpInputArrayOfArrays(imgpoints_r)
-        # cv2.utils.dumpInputArray(np.array(objpoints))
-        # cv2.utils.dumpInputArray(np.array(imgpoints_l))
-        # cv2.utils.dumpInputArray(np.array(imgpoints_r))
-
         ret, K1, d1, K2, d2, R, T, E, F = cv2.stereoCalibrate(
             objpoints,
             imgpoints_l,
@@ -311,24 +303,24 @@ class ApriltagStereoCalibration:
 
         camera_model = {
             'date': time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime()),
-            'markerType': board.type,
-            'markerSize': board.marker_size,
+            'markerFamily': board.family,
+            'boardSize': board.boardSize,
             'height': imgs_l[0].shape[0],
             'width': imgs_l[0].shape[1],
-            'K1': K1,
+            'K1': K1, # camera matrix
             'K2': K2,
-            'd1': d1,
+            'd1': d1, # distortion coefficients
             'd2': d2,
-            'rvecsL': rvecs1,
-            "tvecsL": tvecs1,
+            'rvecsL': rvecs1, # rotations
+            "tvecsL": tvecs1, # translations
             'rvecsR': rvecs2,
             "tvecsR": tvecs2,
-            'R': R,
-            'T': T,
-            'E': E,
-            'F': F,
-            "objpoints": objpoints,
-            "imgpointsL": imgpoints_l,
+            'R': R, # rotation between left/right camera
+            'T': T, # translation between left/right camera
+            'E': E, # essential matrix
+            'F': F, # functional matrix
+            "objpoints": objpoints, # 3d corners on the target board
+            "imgpointsL": imgpoints_l, # 2d image points detected from the image
             "imgpointsR": imgpoints_r,
         }
 

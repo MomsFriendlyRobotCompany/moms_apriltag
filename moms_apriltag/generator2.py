@@ -6,6 +6,22 @@
 ##############################################
 import numpy as np
 
+# apriltags_v2 = [
+#     "tag16h5",
+#     "tag25h9",
+#     "tag36h10",
+#     "tag36h11",
+# ]
+
+tag_sizes_v2 = {
+    "tag16h5": 6,
+    "tag25h9": 7,
+    "tag36h10": 8,
+    "tag36h11": 8,
+}
+
+apriltags_v2 = list(tag_sizes_v2.keys())
+
 class TagGenerator2:
     """
     Generator for tags.

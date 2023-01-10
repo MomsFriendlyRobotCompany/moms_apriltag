@@ -161,8 +161,8 @@ class ApriltagBoard:
         return tags
 
     # @property
-    def draw(self):
-        return self.__target
+    # def draw(self):
+    #     return self.__target
 
 
 

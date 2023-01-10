@@ -6,6 +6,24 @@
 ##############################################
 import numpy as np
 
+# apriltags_v3 = [
+#     "tagCircle21h7",
+#     "tagCircle49h12",
+#     "tagCustom48h12",
+#     "tagStandard41h12",
+#     "tagStandard52h13",
+# ]
+
+tag_sizes_v3 = {
+    "tagCircle21h7": 9,
+    "tagCircle49h12": 11,
+    "tagCustom48h12": 10,
+    "tagStandard41h12": 9,
+    "tagStandard52h13": 10,
+}
+
+apriltags_v3 = list(tag_sizes_v3.keys())
+
 NOTHING   = 0
 WHITE     = 1
 BLACK     = 2
