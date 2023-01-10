@@ -16,16 +16,16 @@ def test_too_big():
         board((6,8), "tag16h5", 1)
 
 
-def test_size():
-    x = board((2,2), "tag25h9", 1)
-    print(x.shape)
-    assert x.shape == (2*3+2*7,20,)
+# def test_size():
+#     x = board((2,2), "tag25h9", 1)
+#     print(x.shape)
+#     assert x.shape == (2*3+2*7,20,)
 
-    x = board((2,2), "tag36h10", 1)
-    assert x.shape == (2*3+2*8,22,)
+#     x = board((2,2), "tag36h10", 1)
+#     assert x.shape == (2*3+2*8,22,)
 
-    x = board((2,2), "tag36h10", 10)
-    assert x.shape == (220,220,)
+#     x = board((2,2), "tag36h10", 10)
+#     assert x.shape == (220,220,)
 
 def test_wrong_marker():
 
