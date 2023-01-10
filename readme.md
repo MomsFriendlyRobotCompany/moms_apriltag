@@ -10,13 +10,18 @@
 
 Why? There didn't really seem to be an easy way to do this IMHO.
 
+This library is able to produce both generation 2 and 3 apriltags all via python (
+no C/C++ library compiling and linking).
+
+However, you will need another library (like `cv2.aruco`) to decode the tags ... see below for more info.
+
 ## Install
 
 ```
 pip install moms_apriltag
 ```
 
-## Usage
+## Examples / Usage
 
 See the jupyter notebook in `example/examples.ipynb` for how to use this.
 
@@ -25,7 +30,9 @@ to a PNG or JPEG image and printed. For circular or custom tags,
 there is a `toRGBA()` function to save the tag to a `png` using
 any image library that can accept `numpy` array images.
 
-Supported families are shown in the table below:
+Supported families are shown in the table below in the image and table:
+
+![](pics/apriltag_formats.png)
 
 | Family    | Generation | Hamming | Size | Data Bits | Unique Tags |
 |-----------|------------|---------|------|-----------|-------------|
@@ -78,19 +85,36 @@ tag = tg.generate(137)
 
 plt.imshow(tag, cmap="gray)
 ```
+## Apriltags using `opencv-contrib-python` for Camera Calibration Target Detection
+
+This library uses the builtin `cv2.aruco` module that can detect:
+
+- `DICT_APRILTAG_16H5`
+- `DICT_APRILTAG_25h9`
+- `DICT_APRILTAG_36h10`
+- `DICT_APRILTAG_36h11`
+
+**This is still a work in progress**
 
 ## Decoders
 
-- pupil labs (tested): https://github.com/pupil-labs/apriltags can decode gen 2 and 3 tags
-    - The detection of gen 3 tags is very slow
-- `cv2.aruco` (tested): can decode gen 2 tags only
-- WillB97: https://github.com/WillB97/pyapriltags can decode gen 2 and 3 tags
+`cv2.aruco` for calibration is built in, but it can decode generation 2 tags only.
+
+- pupil labs (tested): https://github.com/pupil-labs/apriltags can decode generation 2 and 3 tags
+    - The detection of generation 3 tags is **very slow** relative to generation 2
+- WillB97 (untested): https://github.com/WillB97/pyapriltags can decode generation 2 and 3 tags
 
 # Todo
 
+- [ ] change the way the board is created, do a fixed scale size and add a margin with
+      text saying the orientation, family, size, and maybe in the small squares next to
+      the tags, put the number of the tag (number is for the lower left apriltag). I think
+      this would help debugging and understanding what is going on
 - [ ] insert stereo calibration code using pupil labs?
+- [x] move the `opencv_camera` calibration code with `apriltags` here, however, I broke the
+      and am having an issue getting it working again :frowning_face:
 - [ ] refactor board code
-- [ ] enable apriltag v3 markers in board
+- [ ] enable apriltag v3 markers in board, given such slow performance, maybe not do this
 
 # MIT License
 
