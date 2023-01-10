@@ -23,7 +23,7 @@ pip install moms_apriltag
 
 ## Examples / Usage
 
-See the jupyter notebook in `example/examples.ipynb` for how to use this.
+See the jupyter notebooks in `docs/jupyter` folder for how to use this.
 
 This package create a simple numpy image that can then be saved
 to a PNG or JPEG image and printed. For circular or custom tags,
@@ -50,18 +50,14 @@ Supported families are shown in the table below in the image and table:
 
 ```python
 #!/usr/bin/env python3
-import moms_apriltag as apt
+from moms_apriltag import ApriltagBoard
 import imageio
 
+board = ApriltagBoard.create(4,6,"tag25h9", 0.02)
+tgt = board.board
 
-if __name__ == '__main__':
-    family = "tag36h10"
-    shape = (6,8)
-    filename = "apriltag_target.png"
-    size = 50
-
-    tgt = apt.board(shape, family, size)
-    imageio.imwrite(filename, tgt)
+filename = "apriltag_target.png"
+imageio.imwrite(filename, tgt)
 ```
 
 ```python
@@ -94,8 +90,6 @@ This library uses the builtin `cv2.aruco` module that can detect:
 - `DICT_APRILTAG_36h10`
 - `DICT_APRILTAG_36h11`
 
-**This is still a work in progress**
-
 ## Decoders
 
 `cv2.aruco` for calibration is built in, but it can decode generation 2 tags only.
@@ -106,14 +100,13 @@ This library uses the builtin `cv2.aruco` module that can detect:
 
 # Todo
 
-- [ ] change the way the board is created, do a fixed scale size and add a margin with
+- [x] change the way the board is created, do a fixed scale size and add a margin with
       text saying the orientation, family, size, and maybe in the small squares next to
       the tags, put the number of the tag (number is for the lower left apriltag). I think
       this would help debugging and understanding what is going on
 - [ ] insert stereo calibration code using pupil labs?
-- [x] move the `opencv_camera` calibration code with `apriltags` here, however, I broke the
-      and am having an issue getting it working again :frowning_face:
-- [ ] refactor board code
+- [x] move the `opencv_camera` calibration code with `apriltags` here
+- [x] refactor board code
 - [ ] enable apriltag v3 markers in board, given such slow performance, maybe not do this
 
 # MIT License
