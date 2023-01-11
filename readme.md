@@ -23,7 +23,7 @@ pip install moms_apriltag
 
 ## Examples / Usage
 
-See the jupyter notebooks in `docs/jupyter` folder for how to use this.
+See the jupyter notebooks in [`docs/jupyter`](https://github.com/MomsFriendlyRobotCompany/moms_apriltag/tree/master/docs/jupyter) folder for how to use this.
 
 This package create a simple numpy image that can then be saved
 to a PNG or JPEG image and printed. For circular or custom tags,
@@ -32,7 +32,7 @@ any image library that can accept `numpy` array images.
 
 Supported families are shown in the table below in the image and table:
 
-![](pics/apriltag_formats.png)
+![](https://raw.githubusercontent.com/MomsFriendlyRobotCompany/moms_apriltag/master/pics/apriltag_formats.png)
 
 | Family    | Generation | Hamming | Size | Data Bits | Unique Tags |
 |-----------|------------|---------|------|-----------|-------------|
