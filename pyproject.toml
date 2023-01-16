@@ -30,7 +30,7 @@ classifiers = [
 ]
 
 # [tool.poetry.scripts]
-# apriltag_generator = 'moms_apriltag.bin.gen:main'
+grab_images = 'moms_apriltag.bin.grab_images:main'
 
 [tool.poetry.dependencies]
 python = ">=3.8"

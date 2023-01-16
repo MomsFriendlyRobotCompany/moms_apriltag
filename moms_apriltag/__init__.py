@@ -7,6 +7,7 @@
 from importlib.metadata import version # type: ignore
 
 from .target import ApriltagBoard
+from .target import arucoTags
 from .apriltag_drawer import ApriltagDrawer
 from .generator2 import TagGenerator2, apriltags_v2
 from .generator3 import TagGenerator3, tag2RGBA, apriltags_v3

@@ -24,7 +24,7 @@ from opencv_camera import CameraCalibration
 import cv2
 import glob
 import argparse
-from opencv_camera import __version__ as VERSION
+from moms_apriltag import __version__ as VERSION
 import sys
 
 DESCRIPTION = """
