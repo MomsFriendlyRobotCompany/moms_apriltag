@@ -95,7 +95,6 @@ This library uses the builtin `cv2.aruco` module that can detect:
 `cv2.aruco` for calibration is built in, but it can decode generation 2 tags only.
 
 - pupil labs (tested): https://github.com/pupil-labs/apriltags can decode generation 2 and 3 tags
-    - The detection of generation 3 tags is **very slow** relative to generation 2
 - WillB97 (untested): https://github.com/WillB97/pyapriltags can decode generation 2 and 3 tags
 
 # Todo
@@ -107,7 +106,7 @@ This library uses the builtin `cv2.aruco` module that can detect:
 - [ ] insert stereo calibration code using pupil labs?
 - [x] move the `opencv_camera` calibration code with `apriltags` here
 - [x] refactor board code
-- [ ] enable apriltag v3 markers in board, given such slow performance, maybe not do this
+- [ ] enable apriltag v3 markers in board
 
 # MIT License
 

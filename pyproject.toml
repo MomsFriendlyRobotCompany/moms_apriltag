@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "moms_apriltag"
-version = "2023.01.09"
+version = "2023.01.15"
 description = "Generate apriltags, calibration targets, and camera (mono/stereo) calibration"
 authors = ["walchko <walchko@users.noreply.github.com>"]
 readme = "readme.md"
@@ -29,7 +29,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Image Processing"
 ]
 
-# [tool.poetry.scripts]
+[tool.poetry.scripts]
 grab_images = 'moms_apriltag.bin.grab_images:main'
 
 [tool.poetry.dependencies]
